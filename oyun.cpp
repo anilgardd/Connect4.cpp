@@ -19,14 +19,14 @@ int main(){
     game_menu();
     return 0;
 }
-
+// hamle kayıtları
 void log_file(int column){
     ofstream log;
     log.open("log.txt", ios::app);
     log << turn_player << ". Oyuncu " << column << " sütununa yerleştirdi."<<endl; 
     log.close();
 }
-
+// terminale yazdırma
 void print_board(){
     int i,j;
     for(i=9;i>=1;i--){
@@ -36,7 +36,7 @@ void print_board(){
         cout << endl;
     }
 }
-
+//kazanma durum kontrolleri
 int check_game() {
     int i, j;
     for (i = 1; i <= 9; i++) {
@@ -63,7 +63,7 @@ int check_game() {
     }
     return 0;
 }
-
+//hamle yaptırma
 void add_token(){
     int input;
     cin >> input;
@@ -87,7 +87,7 @@ void add_token(){
     }
     play_loop();
 }
-
+// genel loop
 void play_loop(){
     if(turn_player==1){
         cout << "Ana menü için 0 yazabilirsin." << endl;
@@ -100,7 +100,7 @@ void play_loop(){
         add_token();
     }
 }
-
+// tahta durumunu kaydetme
 void save_board() {
     ofstream file;
     file.open("game_data.txt");
@@ -115,7 +115,7 @@ void save_board() {
     file.close();
     cout << "Oyun kaydedildi." << endl;
 }
-
+//kayıtlı tahtayı yükleme
 void load_board() {
     ifstream file;
     file.open("game_data.txt");
@@ -132,7 +132,7 @@ void load_board() {
     file.close();
     cout << "Oyun yüklendi." << endl;
 }
-
+//oyun menüsü
 void game_menu(){
     int game_choice;
     cout<< "1-Oyuna Başla" <<endl;
