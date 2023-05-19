@@ -66,27 +66,36 @@ int check_game() {
 //hamle yaptırma
 void add_token(){
     int input;
-    cin >> input;
+    do{
+        cout << "0 ile 9 arasında bir değer girin: ";
+        cin >> input;
+    } while (input < 0 || input > 9);
+    
     if(input == 0){
-        return game_menu();
+        game_menu();
+        return;
     }
+    
     board[board[0][input]+1][input] = turn_player;
     board[0][input] += 1;
     log_file(input);
     print_board();
     int game_status = check_game();
-    if (game_status!=0){
-        cout << "Oyunu kazanan:" << game_status << endl;
+    if (game_status != 0){
+        cout << "Oyunu kazanan: " << game_status << endl;
         return; 
     }
-    if(turn_player==1){
-        turn_player=2;
+    
+    if (turn_player == 1){
+        turn_player = 2;
     }
     else{
-        turn_player=1;
+        turn_player = 1;
     }
+    
     play_loop();
 }
+
 // genel loop
 void play_loop(){
     if(turn_player==1){
@@ -153,6 +162,7 @@ void game_menu(){
         load_board();
     }
     else if(game_choice==4){
+        ofstream file("log.txt");
         return;
     }
     else{
